@@ -8,16 +8,22 @@ import android.net.NetworkRequest
 import android.util.Log
 import com.aungbophyoe.space.checkinternetconnectionutil.util.NetworkConnectivityUtil
 import com.aungbophyoe.space.checkinternetconnectionutil.util.SingleLiveEvent
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
+@AndroidEntryPoint
 object NetworkConnectivityChecker: SingleLiveEvent<Boolean>() {
-    private lateinit var networkConnectivityUtil: NetworkConnectivityUtil
-    private lateinit var connectivityManager: ConnectivityManager
+    @Inject lateinit var networkConnectivityUtil: NetworkConnectivityUtil
+    @Inject lateinit var connectivityManager: ConnectivityManager
     override fun onActive() {
+        registerCallback()
         Log.d("DG", "Network Connectivity Registered")
         super.onActive()
     }
 
     override fun onInactive() {
+        removeCallback()
         Log.d("DG", "Network Connectivity Unregistered")
         super.onInactive()
     }
@@ -28,11 +34,11 @@ object NetworkConnectivityChecker: SingleLiveEvent<Boolean>() {
 
     fun hasConnection():Boolean = networkConnectivityUtil.isConnected()
 
-    fun init(context: Context) {
+    /*fun init(context: Context) {
         networkConnectivityUtil = NetworkConnectivityUtil(context)
         connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    }
+    }*/
 
     private fun notifyObservers(connectionStatus: Boolean) {
         postValue(connectionStatus)

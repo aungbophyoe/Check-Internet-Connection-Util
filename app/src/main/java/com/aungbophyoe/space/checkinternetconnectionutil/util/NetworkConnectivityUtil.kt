@@ -4,9 +4,13 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class NetworkConnectivityUtil(context: Context) {
-    private val connectivityManager: ConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+@AndroidEntryPoint
+class NetworkConnectivityUtil @Inject constructor(context: Context) {
+    @Inject
+    val connectivityManager: ConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     fun isConnected(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
