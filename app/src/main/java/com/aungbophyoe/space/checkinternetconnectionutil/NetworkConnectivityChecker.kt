@@ -9,10 +9,10 @@ import android.util.Log
 import com.aungbophyoe.space.checkinternetconnectionutil.util.NetworkConnectivityUtil
 import com.aungbophyoe.space.checkinternetconnectionutil.util.SingleLiveEvent
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-/*@AndroidEntryPoint*/
 object NetworkConnectivityChecker: SingleLiveEvent<Boolean>() {
     lateinit var networkConnectivityUtil: NetworkConnectivityUtil
     lateinit var connectivityManager: ConnectivityManager

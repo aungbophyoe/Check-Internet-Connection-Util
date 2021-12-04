@@ -6,9 +6,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     var snackbar: Snackbar? = null
     val parentLayout:ConstraintLayout by lazy {
@@ -17,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     val tvStatus : TextView by lazy {
         findViewById(R.id.tvStatus)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
