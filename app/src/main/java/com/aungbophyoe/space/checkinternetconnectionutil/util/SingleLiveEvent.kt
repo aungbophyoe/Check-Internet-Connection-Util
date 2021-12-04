@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.atomic.AtomicBoolean
 
-@AndroidEntryPoint
 open class SingleLiveEvent<T> : MutableLiveData<T>() {
 
     private val TAG = "SingleLiveEvent"

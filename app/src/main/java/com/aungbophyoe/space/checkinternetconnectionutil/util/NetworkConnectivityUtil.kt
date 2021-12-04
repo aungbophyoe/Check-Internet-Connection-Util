@@ -7,9 +7,7 @@ import android.os.Build
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
-class NetworkConnectivityUtil @Inject constructor(context: Context) {
-    @Inject
+class NetworkConnectivityUtil constructor(context: Context) {
     val connectivityManager: ConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     fun isConnected(): Boolean {

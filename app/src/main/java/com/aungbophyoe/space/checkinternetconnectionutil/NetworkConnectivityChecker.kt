@@ -12,10 +12,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-@AndroidEntryPoint
+/*@AndroidEntryPoint*/
 object NetworkConnectivityChecker: SingleLiveEvent<Boolean>() {
-    @Inject lateinit var networkConnectivityUtil: NetworkConnectivityUtil
-    @Inject lateinit var connectivityManager: ConnectivityManager
+    lateinit var networkConnectivityUtil: NetworkConnectivityUtil
+    lateinit var connectivityManager: ConnectivityManager
     override fun onActive() {
         registerCallback()
         Log.d("DG", "Network Connectivity Registered")
@@ -34,11 +34,11 @@ object NetworkConnectivityChecker: SingleLiveEvent<Boolean>() {
 
     fun hasConnection():Boolean = networkConnectivityUtil.isConnected()
 
-    /*fun init(context: Context) {
+    fun init(context: Context) {
         networkConnectivityUtil = NetworkConnectivityUtil(context)
         connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    }*/
+    }
 
     private fun notifyObservers(connectionStatus: Boolean) {
         postValue(connectionStatus)
